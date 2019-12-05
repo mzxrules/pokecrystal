@@ -2161,6 +2161,12 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld de, wBackupEnemyMonBaseStats
 	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
 	call CopyBytes
+    
+    ; halve xp rate
+    ld a, [wEnemyMonBaseExp]
+    srl a
+    ld [wEnemyMonBaseExp], a
+    
 	xor a
 	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
@@ -7364,14 +7370,14 @@ GiveExperiencePoints:
 	dec c
 	jr nz, .count_loop
 	cp 2
-	ret c
+	ret c ; return if surviving battle participants < 2
 
-	ld [wTempByteValue], a
+	ld [wTempByteValue], a ; number of surviving participants
 	ld hl, wEnemyMonBaseStats
 	ld c, wEnemyMonEnd - wEnemyMonBaseStats
 .base_stat_division_loop
 	xor a
-	ldh [hDividend + 0], a
+	ldh [hDividend + 0], a ; 0
 	ld a, [hl]
 	ldh [hDividend + 1], a
 	ld a, [wTempByteValue]

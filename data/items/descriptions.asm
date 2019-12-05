@@ -119,7 +119,7 @@ ItemDescriptions:
 	dw MiracleSeedDesc
 	dw ThickClubDesc
 	dw FocusBandDesc
-	dw TeruSama8Desc
+	dw XSpecialDefenseDesc
 	dw EnergyPowderDesc
 	dw EnergyRootDesc
 	dw HealPowderDesc
@@ -720,8 +720,9 @@ FocusBandDesc:
 	db   "May prevent faint-"
 	next "ing. (HOLD)@"
 
-TeruSama8Desc:
-	db   "?@"
+XSpecialDefenseDesc:
+	db   "Raises SPECIAL"
+	next "DEFENSE. (1 BTL)@"
 
 EnergyPowderDesc:
 	db   "Restores #MON"
